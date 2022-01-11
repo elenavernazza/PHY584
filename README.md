@@ -60,7 +60,7 @@ Do not hesitate to ask me any question or for additional material.
 ### <a name="S-environment"></a>Setting up the working environment [^a]
 
 You should first set up your laptop in a way that you can connect to the LLR servers and use the Jupyter notebook from the outside. For this, you need to create a SSH key and upload it to any LLR server.
-If you are using an operating system of the Microsoft Windows family, you can install Ubuntu via the Linux Subsystem for Windows and start a terminal emulator this way.
+If you are using an operating system of the Microsoft Windows family, you can start a terminal emulator (suggested https://mobaxterm.mobatek.net/).
 
 Once you are in your terminal, create the key with the following program (just hit enter all the time to accept the defaults):
 
