@@ -68,35 +68,47 @@ Once you are in your terminal, create the key with the following program (just h
 
 Next, you copy the key over to an LLR server:
 
-	ssh-copy-id -i ~/.ssh/mykey appro2@polui04.in2p3.fr
+	ssh-copy-id -i ~/.ssh/id_rsa appro2@llrgate01.in2p3.fr
 
-This one time you'll need a password, just ask me about it. Now it's time to configure your ssh client to connect to the LLR severs via the correct proxy server from the outside. Just download the following config file to set it up and move it to the right directory:
+This one time you'll need a password, just ask me about it. 
+If the previous steps don't work properly, send me an email with the content of your ssh key that you can get by typing:
+
+	cat ~/.ssh/id_rsa.pub
+    
+I will add your key manually to the authorized keys inside appro2 machine.
+
+Now it's time to configure your ssh client to connect to the LLR severs via the correct proxy server from the outside. Just download the following config file to set it up and move it to the right directory:
 
 	mv ~/.ssh/config ~/.ssh/config.bak
 	wget -O ~/.ssh/config http://evernazz.web.cern.ch/evernazz/PHY584/ssh.config
 
 You should now be able to conect to any of the LLR interactive servers as follows, even from the outside:
 
-	ssh polui06
+	ssh appro2
 
-If this particular machine is not available, try any of `polui01`, `polui03`, `polui04`, `polui06` or `polui07`.
+or 
+
+	ssh polui04
+    
+If this particular machine is not available, try any of `polui01`, `polui03`, `polui06` or `polui07`.
 
 
 #### What you need to do every time you want to work with the notebook
 To analyze the test beam data, we use the [Jupyter Notebook](https://jupyter.org/).
 
-From within LLR, which includes the **LLR-WIFI**, it is enough to connect to an interactive machine, preferentially `polui04`:
+From within LLR, it is enough to connect to an interactive machine, preferentially `appro2`:
 
-	ssh polui04
+	ssh appro2
 
 Start the notebook with:
 	
 	notebook
 
 You should now see a link that you can paste in your browser to access the Jupyter notebook.
+
 From outside LLR, one first has to make a SSH tunnel to the LLR network:
 	
-	ssh -N -L 8080:localhost:8080 polui04
+	ssh -N -L 8080:localhost:8080 appro2
 
 You can now start the notebook from another terminal while keeping the proxy open.
 
