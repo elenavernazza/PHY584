@@ -77,10 +77,41 @@ If the previous steps don't work properly, send me an email with the content of 
     
 I will add your key manually to the authorized keys inside appro2 machine.
 
-Now it's time to configure your ssh client to connect to the LLR severs via the correct proxy server from the outside. Just download the following config file to set it up and move it to the right directory:
+Now it's time to configure your ssh client to connect to the LLR severs via the correct proxy server from the outside. Just create a config file to set it up:
 
-	mv ~/.ssh/config ~/.ssh/config.bak
-	wget -O ~/.ssh/config http://evernazz.web.cern.ch/evernazz/PHY584/ssh.config
+	touch ~/.ssh/config
+
+And copy this inside the file `~/.ssh/config`:
+
+	Host llrgate01
+	  User appro2
+	  HostName llrgate01.in2p3.fr
+
+	Host llrgate02
+	  User appro2
+	  HostName llrgate02.in2p3.fr
+	
+	Host polui01 appro2
+	  User appro2
+	  HostName polui01.in2p3.fr
+	  ForwardX11 yes
+	  ForwardX11Trusted no
+	  ProxyJump llrgate02
+
+        Host polui03
+          User appro2
+          HostName polui03.in2p3.fr
+          ForwardX11 yes
+          ForwardX11Trusted no
+          ProxyJump llrgate02
+
+        Host polui04
+          User appro2
+          HostName polui04.in2p3.fr
+          ForwardX11 yes
+          ForwardX11Trusted no
+          ProxyJump llrgate02
+
 
 You should now be able to conect to any of the LLR interactive servers as follows, even from the outside:
 
@@ -90,7 +121,7 @@ or
 
 	ssh polui04
     
-If this particular machine is not available, try any of `polui01`, `polui03`, `polui06` or `polui07`.
+If this particular machine is not available, try any of `polui01`, `polui03`.
 
 
 #### What you need to do every time you want to work with the notebook
